@@ -1,0 +1,14 @@
+
+.vs/
+IEGOCheckpointMaker/bin/Debug/temp/
+IEGOCheckpointMaker/bin/Release/temp
+IEGOCheckpointMaker/bin/Debug/IEGOCheckpointMaker.zip
+IEGOCheckpointMaker/bin/Release/IEGOCheckpointMaker.zip
+IEGOCheckpointMaker/bin/Debug/IEGOCheckpointMaker.rar
+IEGOCheckpointMaker/bin/Release/IEGOCheckpointMaker.rar
+IEGOCheckpointMaker/obj/
+bin/**/*.zip
+bin/**/*.rar
+**/packages/
+
+playground.json

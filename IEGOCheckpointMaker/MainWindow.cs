@@ -30,6 +30,7 @@ namespace IEGOCheckpointMaker
         public MainWindow()
         {
             InitializeComponent();
+            ResizeAndCenterPictureBox();
         }
 
         private string GetLanguage()
@@ -116,6 +117,26 @@ namespace IEGOCheckpointMaker
                 .ToArray();
         }
 
+        private void ResizeAndCenterPictureBox()
+        {
+            if (pictureBoxMapPreview == null || panelMapContainer == null)
+                return;
+
+            int verticalMargin = 10;
+
+            // Maximum square size: panel width or height - 2*margin
+            int size = Math.Min(panelMapContainer.Width, panelMapContainer.Height - 2 * verticalMargin);
+
+            // Apply size
+            pictureBoxMapPreview.Width = size;
+            pictureBoxMapPreview.Height = size;
+
+            // Centre horizontally and vertically with margin
+            pictureBoxMapPreview.Left = (panelMapContainer.Width - size) / 2;
+            pictureBoxMapPreview.Top = verticalMargin + ((panelMapContainer.Height - 2 * verticalMargin - size) / 2);
+        }
+
+
         private void ButtonOpenFile_Click(object sender, EventArgs e)
         {
             openFileDialog1.Title = "Open FA File";
@@ -155,7 +176,10 @@ namespace IEGOCheckpointMaker
                 comboBoxMapName.Items.AddRange(GetMapTexts(maps));
             } else
             {
-                Array.Clear(PhaseInfos, 0, PhaseInfos.Length);
+                if (PhaseInfos != null)
+                {
+                    Array.Clear(PhaseInfos, 0, PhaseInfos.Length);
+                }
             }
 
             panelMain.Enabled = fileOpened;
@@ -219,6 +243,11 @@ namespace IEGOCheckpointMaker
             {
                 _isSyncingMaps = false;
             }
+        }
+
+        private void PanelMapContainer_Resize(object sender, EventArgs e)
+        {
+            ResizeAndCenterPictureBox();
         }
     }
 }

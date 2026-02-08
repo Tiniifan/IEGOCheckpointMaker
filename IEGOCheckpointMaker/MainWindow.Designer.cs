@@ -41,7 +41,7 @@
             this.buttonOpenFile = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.panelMain = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxMapPreview = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.comboBoxMapName = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -54,12 +54,14 @@
             this.comboBoxPhaseNumber = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.panelMapContainer = new System.Windows.Forms.Panel();
             this.panelTop.SuspendLayout();
             this.panelLanguage.SuspendLayout();
             this.panelMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMapPreview)).BeginInit();
             this.panel1.SuspendLayout();
             this.panelPhase.SuspendLayout();
+            this.panelMapContainer.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelTop
@@ -201,7 +203,7 @@
             // 
             // panelMain
             // 
-            this.panelMain.Controls.Add(this.pictureBox1);
+            this.panelMain.Controls.Add(this.panelMapContainer);
             this.panelMain.Controls.Add(this.panel1);
             this.panelMain.Controls.Add(this.panelPhase);
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -211,14 +213,14 @@
             this.panelMain.Size = new System.Drawing.Size(664, 450);
             this.panelMain.TabIndex = 1;
             // 
-            // pictureBox1
+            // pictureBoxMapPreview
             // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 66);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(664, 384);
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
+            this.pictureBoxMapPreview.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxMapPreview.Location = new System.Drawing.Point(182, 44);
+            this.pictureBoxMapPreview.Name = "pictureBoxMapPreview";
+            this.pictureBoxMapPreview.Size = new System.Drawing.Size(300, 300);
+            this.pictureBoxMapPreview.TabIndex = 2;
+            this.pictureBoxMapPreview.TabStop = false;
             // 
             // panel1
             // 
@@ -346,6 +348,16 @@
             this.label2.Text = "Choose your phase";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // panelMapContainer
+            // 
+            this.panelMapContainer.Controls.Add(this.pictureBoxMapPreview);
+            this.panelMapContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelMapContainer.Location = new System.Drawing.Point(0, 66);
+            this.panelMapContainer.Name = "panelMapContainer";
+            this.panelMapContainer.Size = new System.Drawing.Size(664, 384);
+            this.panelMapContainer.TabIndex = 3;
+            this.panelMapContainer.Resize += new System.EventHandler(this.PanelMapContainer_Resize);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -360,9 +372,10 @@
             this.panelLanguage.ResumeLayout(false);
             this.panelLanguage.PerformLayout();
             this.panelMain.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMapPreview)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panelPhase.ResumeLayout(false);
+            this.panelMapContainer.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -394,7 +407,8 @@
         private System.Windows.Forms.ComboBox comboBoxMapId;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBoxMapPreview;
+        private System.Windows.Forms.Panel panelMapContainer;
     }
 }
 

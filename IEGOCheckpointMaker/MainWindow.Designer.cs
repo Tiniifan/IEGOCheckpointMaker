@@ -71,6 +71,9 @@
             this.numericUpDownRot = new System.Windows.Forms.NumericUpDown();
             this.label11 = new System.Windows.Forms.Label();
             this.textBoxCondition = new System.Windows.Forms.TextBox();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.numericUpDownIndex = new System.Windows.Forms.NumericUpDown();
+            this.label12 = new System.Windows.Forms.Label();
             this.panelTop.SuspendLayout();
             this.panelLanguage.SuspendLayout();
             this.panelMain.SuspendLayout();
@@ -88,6 +91,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPosY)).BeginInit();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRot)).BeginInit();
+            this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownIndex)).BeginInit();
             this.SuspendLayout();
             // 
             // panelTop
@@ -391,8 +396,10 @@
             this.panelMMMInfo.Controls.Add(this.panel4);
             this.panelMMMInfo.Controls.Add(this.panel3);
             this.panelMMMInfo.Controls.Add(this.panel2);
+            this.panelMMMInfo.Controls.Add(this.panel6);
             this.panelMMMInfo.Controls.Add(this.comboBoxMMM);
             this.panelMMMInfo.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelMMMInfo.Enabled = false;
             this.panelMMMInfo.Location = new System.Drawing.Point(0, 0);
             this.panelMMMInfo.Name = "panelMMMInfo";
             this.panelMMMInfo.Size = new System.Drawing.Size(297, 384);
@@ -423,7 +430,7 @@
             this.panel2.Controls.Add(this.numericUpDownType);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 21);
+            this.panel2.Location = new System.Drawing.Point(0, 59);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(297, 38);
             this.panel2.TabIndex = 1;
@@ -461,7 +468,7 @@
             this.panel3.Controls.Add(this.numericUpDownPosX);
             this.panel3.Controls.Add(this.label9);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 59);
+            this.panel3.Location = new System.Drawing.Point(0, 97);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(297, 38);
             this.panel3.TabIndex = 2;
@@ -499,7 +506,7 @@
             this.panel4.Controls.Add(this.numericUpDownPosY);
             this.panel4.Controls.Add(this.label10);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 97);
+            this.panel4.Location = new System.Drawing.Point(0, 135);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(297, 38);
             this.panel4.TabIndex = 3;
@@ -537,7 +544,7 @@
             this.panel5.Controls.Add(this.numericUpDownRot);
             this.panel5.Controls.Add(this.label11);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(0, 135);
+            this.panel5.Location = new System.Drawing.Point(0, 173);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(297, 38);
             this.panel5.TabIndex = 4;
@@ -573,11 +580,49 @@
             // textBoxCondition
             // 
             this.textBoxCondition.Dock = System.Windows.Forms.DockStyle.Top;
-            this.textBoxCondition.Location = new System.Drawing.Point(0, 173);
+            this.textBoxCondition.Location = new System.Drawing.Point(0, 211);
             this.textBoxCondition.Multiline = true;
             this.textBoxCondition.Name = "textBoxCondition";
-            this.textBoxCondition.Size = new System.Drawing.Size(297, 187);
+            this.textBoxCondition.Size = new System.Drawing.Size(297, 161);
             this.textBoxCondition.TabIndex = 5;
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.numericUpDownIndex);
+            this.panel6.Controls.Add(this.label12);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel6.Location = new System.Drawing.Point(0, 21);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(297, 38);
+            this.panel6.TabIndex = 6;
+            // 
+            // numericUpDownIndex
+            // 
+            this.numericUpDownIndex.DecimalPlaces = 2;
+            this.numericUpDownIndex.Location = new System.Drawing.Point(154, 6);
+            this.numericUpDownIndex.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
+            this.numericUpDownIndex.Minimum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDownIndex.Name = "numericUpDownIndex";
+            this.numericUpDownIndex.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDownIndex.TabIndex = 1;
+            // 
+            // label12
+            // 
+            this.label12.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label12.Location = new System.Drawing.Point(0, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(148, 38);
+            this.label12.TabIndex = 0;
+            this.label12.Text = "Index";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MainWindow
             // 
@@ -608,6 +653,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPosY)).EndInit();
             this.panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRot)).EndInit();
+            this.panel6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownIndex)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -657,6 +704,9 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.NumericUpDown numericUpDownPosY;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.NumericUpDown numericUpDownIndex;
+        private System.Windows.Forms.Label label12;
     }
 }
 

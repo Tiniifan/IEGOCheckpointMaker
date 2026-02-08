@@ -35,6 +35,7 @@ namespace IEGOCheckpointMaker
         {
             InitializeComponent();
             ResizeAndCenterPictureBox();
+            ResizeMapInfoPanels();
         }
 
         private string GetLanguage()
@@ -42,7 +43,8 @@ namespace IEGOCheckpointMaker
             if (radioButtonFrench.Checked)
             {
                 return "fr";
-            } else if (radioButtonSpanish.Checked)
+            }
+            else if (radioButtonSpanish.Checked)
             {
                 return "es";
             }
@@ -121,23 +123,36 @@ namespace IEGOCheckpointMaker
                 .ToArray();
         }
 
+        private void ResizeMapInfoPanels()
+        {
+            if (panelMapInfo == null || panelMMMInfo == null || panelMapContainer == null)
+                return;
+
+            // Each panel occupies 50% of panelMapInfo width
+            int halfWidth = panelMapInfo.Width / 2;
+
+            panelMMMInfo.Width = halfWidth;
+            panelMapContainer.Width = halfWidth;
+            panelMapContainer.Left = halfWidth;
+        }
+
         private void ResizeAndCenterPictureBox()
         {
             if (pictureBoxMapPreview == null || panelMapContainer == null)
                 return;
 
-            int verticalMargin = 10;
+            int margin = 10;
 
-            // Maximum square size: panel width or height - 2*margin
-            int size = Math.Min(panelMapContainer.Width, panelMapContainer.Height - 2 * verticalMargin);
+            // Maximum square size: panel width or height - 2*margin on all sides
+            int size = Math.Min(panelMapContainer.Width - 2 * margin, panelMapContainer.Height - 2 * margin);
 
             // Apply size
             pictureBoxMapPreview.Width = size;
             pictureBoxMapPreview.Height = size;
 
-            // Centre horizontally and vertically with margin
-            pictureBoxMapPreview.Left = (panelMapContainer.Width - size) / 2;
-            pictureBoxMapPreview.Top = verticalMargin + ((panelMapContainer.Height - 2 * verticalMargin - size) / 2);
+            // Centre horizontally and vertically with margin on all sides
+            pictureBoxMapPreview.Left = margin + (panelMapContainer.Width - 2 * margin - size) / 2;
+            pictureBoxMapPreview.Top = margin + (panelMapContainer.Height - 2 * margin - size) / 2;
         }
 
         private void LoadMap()
@@ -236,7 +251,8 @@ namespace IEGOCheckpointMaker
                 KeyValuePair<int, string>[] maps = GetMapIds();
                 comboBoxMapId.Items.AddRange(maps.Select(x => x.Value.ToString()).ToArray());
                 comboBoxMapName.Items.AddRange(GetMapTexts(maps));
-            } else
+            }
+            else
             {
                 if (PhaseInfos != null)
                 {
@@ -316,6 +332,12 @@ namespace IEGOCheckpointMaker
 
         private void PanelMapContainer_Resize(object sender, EventArgs e)
         {
+            ResizeAndCenterPictureBox();
+        }
+
+        private void PanelMapInfo_Resize(object sender, EventArgs e)
+        {
+            ResizeMapInfoPanels();
             ResizeAndCenterPictureBox();
         }
     }

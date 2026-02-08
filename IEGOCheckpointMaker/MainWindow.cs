@@ -12,6 +12,7 @@ using StudioElevenLib.Level5.Archive.ARC0;
 using StudioElevenLib.Level5.Binary;
 using StudioElevenLib.Level5.Binary.Collections;
 using StudioElevenLib.Level5.Text;
+using StudioElevenLib.Tools;
 
 namespace IEGOCheckpointMaker
 {
@@ -24,6 +25,7 @@ namespace IEGOCheckpointMaker
         private PhaseInfo[] PhaseInfos;
 
         private bool _isSyncing = false;
+        private bool _isSyncingMaps = false;
 
         public MainWindow()
         {
@@ -79,6 +81,41 @@ namespace IEGOCheckpointMaker
                 .ToArray();
         }
 
+        private KeyValuePair<int, string>[] GetMapIds()
+        {
+            VirtualDirectory mapFolder = IEA_FA.Directory.GetFolderFromFullPath("/data/map");
+
+            if (mapFolder == null)
+                return Array.Empty<KeyValuePair<int, string>>();
+
+            return mapFolder.Folders
+                .Select(f =>
+                {
+                    string fileName = f.Name;
+                    int crc32 = unchecked((int)Crc32.Compute(Encoding.UTF8.GetBytes(fileName)));
+
+                    return new KeyValuePair<int, string>(crc32, fileName);
+                })
+                .ToArray();
+        }
+
+
+        private string[] GetMapTexts(KeyValuePair<int, string>[] maps)
+        {
+            byte[] fileData = IEA_FA.Directory.GetFileFromFullPath(
+                "/data/res/text/system_text_" + Language + ".cfg.bin");
+
+            T2bþ phaseText = new T2bþ(fileData);
+
+            return maps
+                .Select(map =>
+                    phaseText.Nouns.TryGetValue(map.Key, out var text)
+                        ? text.Strings[0].Text
+                        : map.Value
+                )
+                .ToArray();
+        }
+
         private void ButtonOpenFile_Click(object sender, EventArgs e)
         {
             openFileDialog1.Title = "Open FA File";
@@ -107,10 +144,15 @@ namespace IEGOCheckpointMaker
 
             if (fileOpened)
             {
+                // Set phase
                 PhaseInfos = GetPhaseInfos();
-
                 comboBoxPhaseNumber.Items.AddRange(PhaseInfos.Select(x => x.PhaseString.ToString()).ToArray());
                 comboBoxPhaseText.Items.AddRange(GetPhaseTexts(PhaseInfos));
+
+                // Set map
+                KeyValuePair<int, string>[] maps = GetMapIds();
+                comboBoxMapId.Items.AddRange(maps.Select(x => x.Value.ToString()).ToArray());
+                comboBoxMapName.Items.AddRange(GetMapTexts(maps));
             } else
             {
                 Array.Clear(PhaseInfos, 0, PhaseInfos.Length);
@@ -146,6 +188,36 @@ namespace IEGOCheckpointMaker
             finally
             {
                 _isSyncing = false;
+            }
+        }
+
+        private void ComboBoxMapId_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_isSyncingMaps) return;
+
+            try
+            {
+                _isSyncingMaps = true;
+                comboBoxMapName.SelectedIndex = comboBoxMapId.SelectedIndex;
+            }
+            finally
+            {
+                _isSyncingMaps = false;
+            }
+        }
+
+        private void ComboBoxMapName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_isSyncingMaps) return;
+
+            try
+            {
+                _isSyncingMaps = true;
+                comboBoxMapId.SelectedIndex = comboBoxMapName.SelectedIndex;
+            }
+            finally
+            {
+                _isSyncingMaps = false;
             }
         }
     }

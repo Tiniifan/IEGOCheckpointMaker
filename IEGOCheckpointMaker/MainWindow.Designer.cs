@@ -43,9 +43,9 @@
             this.panelMain = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBoxMapName = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBoxMapId = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.panelPhase = new System.Windows.Forms.Panel();
@@ -222,9 +222,9 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.comboBox1);
+            this.panel1.Controls.Add(this.comboBoxMapName);
             this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.comboBox2);
+            this.panel1.Controls.Add(this.comboBoxMapId);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -233,14 +233,15 @@
             this.panel1.Size = new System.Drawing.Size(664, 33);
             this.panel1.TabIndex = 1;
             // 
-            // comboBox1
+            // comboBoxMapName
             // 
-            this.comboBox1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(442, 0);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(207, 21);
-            this.comboBox1.TabIndex = 3;
+            this.comboBoxMapName.Dock = System.Windows.Forms.DockStyle.Left;
+            this.comboBoxMapName.FormattingEnabled = true;
+            this.comboBoxMapName.Location = new System.Drawing.Point(442, 0);
+            this.comboBoxMapName.Name = "comboBoxMapName";
+            this.comboBoxMapName.Size = new System.Drawing.Size(207, 21);
+            this.comboBoxMapName.TabIndex = 3;
+            this.comboBoxMapName.SelectedIndexChanged += new System.EventHandler(this.ComboBoxMapName_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -252,14 +253,15 @@
             this.label5.Text = "By name";
             this.label5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // comboBox2
+            // comboBoxMapId
             // 
-            this.comboBox2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(214, 0);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 1;
+            this.comboBoxMapId.Dock = System.Windows.Forms.DockStyle.Left;
+            this.comboBoxMapId.FormattingEnabled = true;
+            this.comboBoxMapId.Location = new System.Drawing.Point(214, 0);
+            this.comboBoxMapId.Name = "comboBoxMapId";
+            this.comboBoxMapId.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxMapId.TabIndex = 1;
+            this.comboBoxMapId.SelectedIndexChanged += new System.EventHandler(this.ComboBoxMapId_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -387,9 +389,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBoxMapName;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboBoxMapId;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.PictureBox pictureBox1;

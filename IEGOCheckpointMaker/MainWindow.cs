@@ -27,6 +27,8 @@ namespace IEGOCheckpointMaker
         private bool _isSyncing = false;
         private bool _isSyncingMaps = false;
 
+        private Bitmap MiniMapImage;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -188,6 +190,7 @@ namespace IEGOCheckpointMaker
         private void ComboBoxPhaseNumber_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (_isSyncing) return;
+            if (comboBoxPhaseNumber.SelectedIndex == -1) return;
 
             try
             {
@@ -203,6 +206,7 @@ namespace IEGOCheckpointMaker
         private void ComboBoxPhaseText_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (_isSyncing) return;
+            if (comboBoxPhaseText.SelectedIndex == -1) return;
 
             try
             {
@@ -218,6 +222,7 @@ namespace IEGOCheckpointMaker
         private void ComboBoxMapId_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (_isSyncingMaps) return;
+            if (comboBoxMapId.SelectedIndex == -1) return;
 
             try
             {
@@ -233,6 +238,7 @@ namespace IEGOCheckpointMaker
         private void ComboBoxMapName_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (_isSyncingMaps) return;
+            if (comboBoxMapName.SelectedIndex == -1) return;
 
             try
             {

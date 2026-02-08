@@ -5,12 +5,14 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using StudioElevenLib.Level5.Archive.ARC0;
 using StudioElevenLib.Level5.Binary;
 using StudioElevenLib.Level5.Binary.Collections;
+using StudioElevenLib.Level5.Image;
 using StudioElevenLib.Level5.Text;
 using StudioElevenLib.Tools;
 
@@ -138,6 +140,64 @@ namespace IEGOCheckpointMaker
             pictureBoxMapPreview.Top = verticalMargin + ((panelMapContainer.Height - 2 * verticalMargin - size) / 2);
         }
 
+        private void LoadMap()
+        {
+            VirtualDirectory mapFolder = IEA_FA.Directory.GetFolderFromFullPath("/data/map");
+
+            Bitmap miniMapImage = null;
+
+            if (mapFolder != null)
+            {
+                string selectedText = comboBoxMapId.Items[comboBoxMapId.SelectedIndex].ToString();
+
+                if (mapFolder.IsFolderExists(selectedText))
+                {
+                    VirtualDirectory selectedMap = mapFolder.GetFolder(selectedText);
+
+                    if (selectedMap != null)
+                    {
+                        string xiFile = $"{selectedText}.xi";
+
+                        if (selectedMap.Files.ContainsKey(xiFile))
+                        {
+                            selectedMap.Files[xiFile].Read();
+                            byte[] imageData = selectedMap.Files[xiFile].ByteContent;
+
+                            miniMapImage = IMGC.ToBitmap(imageData);
+                        }
+                    }
+                }
+            }
+
+            // If no image found, create a transparent bitmap with black text
+            if (miniMapImage == null)
+            {
+                int width = pictureBoxMapPreview.Width;
+                int height = pictureBoxMapPreview.Height;
+
+                miniMapImage = new Bitmap(width, height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+
+                using (Graphics g = Graphics.FromImage(miniMapImage))
+                {
+                    g.Clear(Color.Transparent);
+
+                    string text = "No Minimap found";
+                    Font font = new Font("Arial", 14, FontStyle.Bold);
+                    SizeF textSize = g.MeasureString(text, font);
+
+                    float x = (width - textSize.Width) / 2;
+                    float y = (height - textSize.Height) / 2;
+
+                    g.DrawString(text, font, Brushes.Black, x, y);
+                }
+            }
+
+            // Display in PictureBox and stretch to fill
+            pictureBoxMapPreview.Image = miniMapImage;
+            pictureBoxMapPreview.SizeMode = PictureBoxSizeMode.StretchImage;
+        }
+
+
 
         private void ButtonOpenFile_Click(object sender, EventArgs e)
         {
@@ -233,6 +293,8 @@ namespace IEGOCheckpointMaker
             {
                 _isSyncingMaps = false;
             }
+
+            LoadMap();
         }
 
         private void ComboBoxMapName_SelectedIndexChanged(object sender, EventArgs e)
@@ -244,6 +306,7 @@ namespace IEGOCheckpointMaker
             {
                 _isSyncingMaps = true;
                 comboBoxMapId.SelectedIndex = comboBoxMapName.SelectedIndex;
+                LoadMap();
             }
             finally
             {

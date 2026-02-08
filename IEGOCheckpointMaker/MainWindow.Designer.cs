@@ -45,6 +45,7 @@
             this.panelMapContainer = new System.Windows.Forms.Panel();
             this.pictureBoxMapPreview = new System.Windows.Forms.PictureBox();
             this.panelMMMInfo = new System.Windows.Forms.Panel();
+            this.buttonAddItem = new System.Windows.Forms.Button();
             this.buttonOpenCondition = new System.Windows.Forms.Button();
             this.textBoxCondition = new System.Windows.Forms.TextBox();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -61,13 +62,12 @@
             this.label8 = new System.Windows.Forms.Label();
             this.comboBoxMMM = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonSaveChange = new System.Windows.Forms.Button();
             this.comboBoxMapName = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.comboBoxMapId = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.buttonAddItem = new System.Windows.Forms.Button();
-            this.buttonSaveChange = new System.Windows.Forms.Button();
             this.panelTop.SuspendLayout();
             this.panelLanguage.SuspendLayout();
             this.panelMain.SuspendLayout();
@@ -282,6 +282,17 @@
             this.panelMMMInfo.Size = new System.Drawing.Size(297, 417);
             this.panelMMMInfo.TabIndex = 4;
             // 
+            // buttonAddItem
+            // 
+            this.buttonAddItem.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonAddItem.Location = new System.Drawing.Point(0, 216);
+            this.buttonAddItem.Name = "buttonAddItem";
+            this.buttonAddItem.Size = new System.Drawing.Size(297, 23);
+            this.buttonAddItem.TabIndex = 8;
+            this.buttonAddItem.Text = "Add item";
+            this.buttonAddItem.UseVisualStyleBackColor = true;
+            this.buttonAddItem.Click += new System.EventHandler(this.ButtonAddItem_Click);
+            // 
             // buttonOpenCondition
             // 
             this.buttonOpenCondition.Dock = System.Windows.Forms.DockStyle.Top;
@@ -480,6 +491,18 @@
             this.panel1.Size = new System.Drawing.Size(798, 33);
             this.panel1.TabIndex = 1;
             // 
+            // buttonSaveChange
+            // 
+            this.buttonSaveChange.Dock = System.Windows.Forms.DockStyle.Left;
+            this.buttonSaveChange.Enabled = false;
+            this.buttonSaveChange.Location = new System.Drawing.Point(649, 0);
+            this.buttonSaveChange.Name = "buttonSaveChange";
+            this.buttonSaveChange.Size = new System.Drawing.Size(113, 33);
+            this.buttonSaveChange.TabIndex = 9;
+            this.buttonSaveChange.Text = "Save change";
+            this.buttonSaveChange.UseVisualStyleBackColor = true;
+            this.buttonSaveChange.Click += new System.EventHandler(this.ButtonSaveChange_Click);
+            // 
             // comboBoxMapName
             // 
             this.comboBoxMapName.Dock = System.Windows.Forms.DockStyle.Left;
@@ -529,29 +552,6 @@
             this.label7.TabIndex = 0;
             this.label7.Text = "Choose your map";
             this.label7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // buttonAddItem
-            // 
-            this.buttonAddItem.Dock = System.Windows.Forms.DockStyle.Top;
-            this.buttonAddItem.Location = new System.Drawing.Point(0, 216);
-            this.buttonAddItem.Name = "buttonAddItem";
-            this.buttonAddItem.Size = new System.Drawing.Size(297, 23);
-            this.buttonAddItem.TabIndex = 8;
-            this.buttonAddItem.Text = "Add item";
-            this.buttonAddItem.UseVisualStyleBackColor = true;
-            this.buttonAddItem.Click += new System.EventHandler(this.ButtonAddItem_Click);
-            // 
-            // buttonSaveChange
-            // 
-            this.buttonSaveChange.Dock = System.Windows.Forms.DockStyle.Left;
-            this.buttonSaveChange.Location = new System.Drawing.Point(649, 0);
-            this.buttonSaveChange.Name = "buttonSaveChange";
-            this.buttonSaveChange.Size = new System.Drawing.Size(113, 33);
-            this.buttonSaveChange.TabIndex = 9;
-            this.buttonSaveChange.Text = "Save change";
-            this.buttonSaveChange.UseVisualStyleBackColor = true;
-            this.buttonSaveChange.Visible = false;
-            this.buttonSaveChange.Click += new System.EventHandler(this.ButtonSaveChange_Click);
             // 
             // MainWindow
             // 

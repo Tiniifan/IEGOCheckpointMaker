@@ -260,6 +260,7 @@ namespace IEGOCheckpointMaker
                     panelMMMInfo.Enabled = true;
                     PopulateMMMComboBox();
                     UpdateMiniMapWithMMM();
+                    buttonSaveChange.Enabled = true;
                 }
                 else
                 {
@@ -267,6 +268,7 @@ namespace IEGOCheckpointMaker
                     panelMMMInfo.Enabled = false;
                     MMMData = null;
                     MMMConfigs = null;
+                    buttonSaveChange.Enabled = false;
                 }
             }
             catch (Exception ex)
